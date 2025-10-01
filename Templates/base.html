@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>📚 Book Library</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+  body {
+    background-image: url('{{ url_for("static", filename="images/bg4.jpg") }}');
+    background-size: cover;      
+    background-repeat: no-repeat;  
+    background-attachment: fixed; 
+    background-position: center;
+  }
+
+
+  .navbar {
+    background-color: rgba(247, 246, 246, 0.3) !important; 
+  }
+
+  
+  .navbar .nav-link, .navbar .navbar-brand {
+    color: #3a2df1 !important;
+    
+  }
+</style>
+<style>
+  .btn-primary{
+     background-color: #457ccd;    
+    border: none;
+    color: #fff;
+  }
+</style>
+<style>
+  
+  .card {
+    background-color: rgba(252, 244, 244, 0.5);  
+    color: #1b409f;  
+  }
+
+  
+  .card .btn {
+    color: #ffffff;
+    border-color: #ffffff;
+  }
+  
+  .card-subtitle {
+    color: #f9fafb;   
+    font-style: italic;
+  }
+  .card .btn:hover {
+    background-color: #ffffff;
+    color: #000000;
+  }
+   
+ 
+   
+  .card-img-top {
+    width: 100%;            
+    height: 200px;          
+    object-fit: cover; 
+    margin-top:10px ;    
+    margin-bottom: 10px;    
+    border-radius: 4px;     
+  }
+
+  
+  .card-body {
+    padding: 15px;
+  }
+   .btn-warning {
+    background-color: #d29b5c;   
+    border: none;
+    color: #000; 
+  }
+   .btn-danger {
+    background-color: #bd3f3f;  
+    border: none;
+    color: #fff;
+  }
+  .btn-outline-primary {
+    background-color: #2a8c46;   
+    border: none;
+    color: #fff; 
+  }
+  .btn-outline-success {
+   background-color: #f560a1;  
+    border: none;
+    color: #fff;  
+  }
+</style>
+
+</head>
+<body class="container mt-4">
+
+ 
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+    <div class="container-fluid">
+     <a class="navbar-brand d-flex align-items-center" href="/">
+  <img src="{{ url_for('static', filename='images/books.png') }}" alt="Book Logo" width="30" height="30" class="me-2">
+  Book Library
+</a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+     
+      <ul class="navbar-nav mx-auto gap-5">
+        <li class="nav-item">
+          <a class="nav-link active" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/add">Add Book</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/export">Export</a>
+        </li>
+      </ul>
+    </div>
+    </div>
+  </nav>
+
+  
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      {% for category, message in messages %}
+        <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+          {{ message }}
+          <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
+
+  {% block content %}{% endblock %}
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
